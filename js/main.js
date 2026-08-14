@@ -180,4 +180,12 @@
     },
     true,
   );
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden && activeTrack) stopTrack(activeTrack);
+  });
+
+  window.addEventListener("pagehide", () => {
+    if (activeTrack) stopTrack(activeTrack);
+  });
 })();
