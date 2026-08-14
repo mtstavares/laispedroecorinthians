@@ -149,13 +149,14 @@
 
     if (activeTrack && activeTrack !== track) stopTrack(activeTrack);
 
+    activeTrack = track;
+    setPlayingState(track, true);
+
     try {
       await audio.play();
-      activeTrack = track;
-      setPlayingState(track, true);
     } catch {
       setPlayingState(track, false);
-      activeTrack = null;
+      if (activeTrack === track) activeTrack = null;
     }
   });
 
