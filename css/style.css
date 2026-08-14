@@ -53,7 +53,7 @@ body.letter-opening {
 .letter-opening .tribute {
   visibility: visible;
   opacity: 1;
-  transition: opacity 520ms ease 760ms;
+  transition: opacity 520ms ease 1080ms;
 }
 
 .letter-open .envelope {
@@ -590,11 +590,18 @@ h2 {
 }
 
 .letter-opening .envelope {
-  opacity: 0;
-  translate: 0 4%;
-  transition:
-    opacity 520ms ease 880ms,
-    translate 640ms cubic-bezier(0.4, 0, 0.2, 1) 820ms;
+  animation: exit-envelope 600ms cubic-bezier(0.4, 0, 0.2, 1) 1180ms both;
+}
+
+@keyframes exit-envelope {
+  from {
+    opacity: 1;
+    translate: 0 0;
+  }
+  to {
+    opacity: 0;
+    translate: 0 7%;
+  }
 }
 
 @keyframes letter-arrive {
@@ -623,12 +630,11 @@ h2 {
   z-index: 2;
   width: min(100%, 60rem);
   height: clamp(12rem, 48vw, 21rem);
-  transform: translateX(-50%) perspective(70rem) rotateX(0deg);
+  transform: translateX(-50%) scaleY(1);
   transform-origin: center top;
-  transform-style: preserve-3d;
   transition:
-    transform 680ms cubic-bezier(0.45, 0, 0.2, 1) 260ms,
-    opacity 300ms ease 680ms;
+    transform 680ms cubic-bezier(0.45, 0, 0.2, 1) 250ms,
+    opacity 260ms ease 700ms;
 }
 
 .envelope__flap-panel::before {
@@ -642,8 +648,36 @@ h2 {
 }
 
 .letter-opening .envelope__flap-panel {
-  opacity: 0.36;
-  transform: translateX(-50%) perspective(70rem) rotateX(154deg);
+  opacity: 0.48;
+  transform: translateX(-50%) scaleY(0.055);
+}
+
+.envelope__letter-sheet {
+  position: absolute;
+  top: clamp(8.5rem, 36vw, 14rem);
+  left: 50%;
+  z-index: 1;
+  width: min(82%, 34rem);
+  height: min(48svh, 28rem);
+  border: 1px solid rgba(90, 17, 27, 0.12);
+  border-radius: 0.2rem 0.2rem 0 0;
+  background:
+    linear-gradient(rgba(134, 31, 42, 0.055) 1px, transparent 1px),
+    var(--color-surface);
+  background-size: 100% 2rem;
+  box-shadow: 0 -0.6rem 1.4rem rgba(39, 8, 12, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 22%) scale(0.94);
+  transform-origin: center bottom;
+  transition:
+    opacity 240ms ease 360ms,
+    transform 760ms cubic-bezier(0.22, 0.75, 0.22, 1) 380ms;
+}
+
+.letter-opening .envelope__letter-sheet {
+  opacity: 1;
+  transform: translate(-50%, -34%) scale(1);
 }
 
 .envelope__line {
@@ -653,6 +687,7 @@ h2 {
   height: 0.2rem;
   border-radius: 999px;
   background: var(--color-surface);
+  transition: transform 640ms cubic-bezier(0.45, 0, 0.2, 1) 270ms;
 }
 
 .envelope__line--left {
@@ -665,6 +700,11 @@ h2 {
   right: -17%;
   transform-origin: right center;
   transform: rotate(-42deg);
+}
+
+.letter-opening .envelope__line--left,
+.letter-opening .envelope__line--right {
+  transform: rotate(0deg);
 }
 
 .wax-seal {
@@ -740,8 +780,8 @@ h2 {
   opacity: 0;
   translate: 0 0.6rem;
   transition:
-    opacity 300ms ease 700ms,
-    translate 300ms ease 700ms;
+    opacity 320ms ease 960ms,
+    translate 320ms ease 960ms;
 }
 
 @keyframes release-seal {

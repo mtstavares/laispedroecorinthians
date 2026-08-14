@@ -10,7 +10,7 @@
 
     if (!envelope || !tribute || !openButton || !heroTitle) return;
 
-    const TRANSITION_FALLBACK_MS = 1800;
+    const TRANSITION_FALLBACK_MS = 2100;
     let isOpening = false;
 
     const waitForEnvelopeExit = () =>
@@ -19,6 +19,7 @@
 
         const finish = () => {
           envelope.removeEventListener("transitionend", handleTransitionEnd);
+          envelope.removeEventListener("animationend", handleAnimationEnd);
           window.clearTimeout(fallback);
           resolve();
         };
@@ -29,7 +30,14 @@
           }
         };
 
+        const handleAnimationEnd = (event) => {
+          if (event.target === envelope && event.animationName === "exit-envelope") {
+            finish();
+          }
+        };
+
         envelope.addEventListener("transitionend", handleTransitionEnd);
+        envelope.addEventListener("animationend", handleAnimationEnd);
         fallback = window.setTimeout(finish, TRANSITION_FALLBACK_MS);
       });
 
