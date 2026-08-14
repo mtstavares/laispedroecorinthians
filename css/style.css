@@ -5,6 +5,7 @@
   --color-surface: #fffaf0;
   --color-surface-pure: #ffffff;
   --color-text: #211b1b;
+  --color-ink: #111111;
   --color-text-muted: #6d5d5d;
   --color-accent: #b42336;
   --color-vinyl: #111011;
@@ -548,6 +549,7 @@ h2 {
 
 .relationship__phrase {
   margin: 0;
+  color: var(--color-ink);
   font-size: clamp(0.88rem, 4.2vw, 1.5rem);
   font-style: italic;
   font-weight: 400;
