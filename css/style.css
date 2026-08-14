@@ -912,12 +912,12 @@ h2 {
 
   .envelope__line--left {
     left: -8%;
-    transform: rotate(34deg);
+    transform: rotate(26deg);
   }
 
   .envelope__line--right {
     right: -8%;
-    transform: rotate(-34deg);
+    transform: rotate(-26deg);
   }
 }
 
