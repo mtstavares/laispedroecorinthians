@@ -599,7 +599,7 @@ h2 {
 .heart-arrow__feather {
   fill: none;
   stroke: currentColor;
-  stroke-width: 4;
+  stroke-width: 3.4;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
